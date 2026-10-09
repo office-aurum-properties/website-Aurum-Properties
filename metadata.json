@@ -1,0 +1,8 @@
+{
+  "name": "Aurum Properties",
+  "description": "Discover premium properties with Aurum Properties. Find trusted real estate projects, residential plots, and investment opportunities across India.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

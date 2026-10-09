@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Sitemap: http://aurumproperties.in/sitemap.xml
+Sitemap: https://aurumproperties.in/sitemap.xml

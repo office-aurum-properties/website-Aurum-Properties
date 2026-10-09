@@ -1,0 +1,138 @@
+/* ==========================================================================
+   FLYING BIRD ANIMATION STYLES (HOME PAGE DECORATIVE FEATURE)
+   GPU-accelerated transforms & transitions for realistic bird flight.
+   ========================================================================== */
+
+/* Outer flight container: fixed across viewport, non-interactive */
+.flying-bird-wrapper {
+  position: fixed;
+  pointer-events: none;
+  z-index: 25; /* Above page content & cards, safely below header (z-40/50) and modals (z-50) */
+  top: 0;
+  left: 0;
+  will-change: transform, opacity;
+  user-select: none;
+}
+
+/* Bobbing / undulation wrapper: adds gentle natural gliding drift */
+.flying-bird-bob {
+  will-change: transform;
+  animation: birdBobbing 1.8s ease-in-out infinite alternate;
+}
+
+/* Wing flap cycler: switches through 4 anatomical wing frames in sequence */
+.flying-bird-frame {
+  display: none;
+}
+
+/* 4-phase wing cycle using keyframes */
+@keyframes birdFlapCycle {
+  0%, 100% {
+    opacity: 1;
+  }
+}
+
+/* Natural sinusoidal bobbing: only transforms translateY to prevent layout jank */
+@keyframes birdBobbing {
+  0% {
+    transform: translateY(-8px) rotate(-1deg);
+  }
+  50% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  100% {
+    transform: translateY(9px) rotate(1.5deg);
+  }
+}
+
+/* Wing flap timing for SVG wing groups */
+@keyframes wingFlapUpper {
+  0% {
+    transform: rotate(0deg) scaleY(1);
+  }
+  25% {
+    transform: rotate(-18deg) scaleY(0.75);
+  }
+  50% {
+    transform: rotate(14deg) scaleY(0.9);
+  }
+  75% {
+    transform: rotate(-8deg) scaleY(0.8);
+  }
+  100% {
+    transform: rotate(0deg) scaleY(1);
+  }
+}
+
+@keyframes wingFlapLower {
+  0% {
+    transform: rotate(0deg) scaleY(1);
+  }
+  25% {
+    transform: rotate(16deg) scaleY(0.85);
+  }
+  50% {
+    transform: rotate(-12deg) scaleY(0.7);
+  }
+  75% {
+    transform: rotate(8deg) scaleY(0.9);
+  }
+  100% {
+    transform: rotate(0deg) scaleY(1);
+  }
+}
+
+/* Feather tip flutter */
+@keyframes featherTipFlutter {
+  0%, 100% {
+    transform: skewX(0deg);
+  }
+  50% {
+    transform: skewX(-4deg);
+  }
+}
+
+/* Scarlet Macaw long tail aerodynamic wave & rudder flex */
+@keyframes macawTailWave {
+  0%, 100% {
+    transform: rotate(0deg) scaleY(1);
+  }
+  50% {
+    transform: rotate(3.5deg) scaleY(0.96);
+  }
+}
+
+/* Swallowtail & pigeon fan-tail rudder motion */
+@keyframes pigeonTailFan {
+  0%, 100% {
+    transform: rotate(0deg) scaleX(1);
+  }
+  50% {
+    transform: rotate(2deg) scaleX(1.04);
+  }
+}
+
+@keyframes tailStreamerFlex {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(3deg) scaleY(0.96);
+  }
+}
+
+/* Accessibility: strictly respect prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  .flying-bird-wrapper {
+    display: none !important;
+    animation: none !important;
+  }
+}
+
+/* Mobile optimization: scale down on compact mobile screens (<480px) */
+@media (max-width: 480px) {
+  .flying-bird-wrapper {
+    opacity: 0.85;
+    transform-origin: center center;
+  }
+}
